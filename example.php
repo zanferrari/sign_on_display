@@ -20,6 +20,8 @@ if(isset($_POST['sign']) && $_POST['sign'] != '' && isset($_POST['img']) && $_PO
     /*
      * makes a pdf with signature with the given filename, using an existing pdf as template    
      * parameters: filename to be produced, template pdf to be used
+     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PUT A TEMPLATE (template.pdf) in the dir.
+     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Upload of binary data (phpclasses.org) was not permitted
      */     
     $s->use_template_pdf('output','template'); // 
     
