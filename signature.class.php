@@ -56,7 +56,7 @@ class signature {
             }
         }        
     }
-<<<<<<< HEAD
+
 
     // makes the template if it doesn't exist
     function make_template_pdf($filename){
@@ -76,8 +76,6 @@ class signature {
         }        
          
     }
-=======
->>>>>>> 9078a9564dd30fa063f85723a9ada19d7a6d718d
      
     // makes a new pdf with the signature
     function make_new_pdf($filename){
@@ -100,7 +98,7 @@ class signature {
     
     // uses a template and places the signature
     function use_template_pdf($filename, $template){
-<<<<<<< HEAD
+
 
 	// if template doesn't exists makes it	
 	if(!file_exists($template.'.pdf')){
@@ -108,26 +106,24 @@ class signature {
 	}
 
 	$this->pdf = new FPDI();
-=======
+
             
         $this->pdf = new FPDI();
->>>>>>> 9078a9564dd30fa063f85723a9ada19d7a6d718d
 
         $pagecount = $this->pdf->setSourceFile($template.'.pdf');
         $tplidx = $this->pdf->importPage(1);
          
         $this->pdf->addPage();
-<<<<<<< HEAD
+
         $this->pdf->useTemplate($tplidx, 0, 0);
         $this->pdf->SetXY(100, 270);
         
         $this->pdf->Image($this->image,125,260,-200);
-=======
+
         $this->pdf->useTemplate($tplidx, 10, 10);
         $this->pdf->SetXY(100, 270);
         
         $this->pdf->Image($this->image,135,260,-200);
->>>>>>> 9078a9564dd30fa063f85723a9ada19d7a6d718d
         
         if(is_writable(dirname(__FILE__))){
             $this->pdf->Output($filename.'.pdf', 'F'); 
@@ -137,8 +133,5 @@ class signature {
          
     }
 }
-<<<<<<< HEAD
+
 ?>
-=======
-?>
->>>>>>> 9078a9564dd30fa063f85723a9ada19d7a6d718d
