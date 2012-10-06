@@ -60,20 +60,22 @@ class signature {
 
     // makes the template if it doesn't exist
     function make_template_pdf($filename){
+        	
+		$this->pdf = new FPDI();
             
-        $this->pdf = new FPDI();
         $this->pdf->addPage();
         $this->pdf->SetFont('Arial','',18);
-	$this->pdf->SetXY(10, 10);
-	$this->pdf->Write(5,"This is a template example");
-        $this->pdf->SetXY(100, 270);
+		$this->pdf->SetXY(10, 10);
+		$this->pdf->Write(5,"This is a template example");
+        $this->pdf->SetXY(90, 260);
         $this->pdf->Write(5,"Signature: ");
         
         if(is_writable(dirname(__FILE__))){
             $this->pdf->Output($filename.'.pdf', 'F'); 
         }else{
             $this->pdf->Output($filename.'.pdf', 'I');
-        }        
+        }
+		$this->pdf = NULL;        
          
     }
      
@@ -92,44 +94,36 @@ class signature {
             $this->pdf->Output($filename.'.pdf', 'F'); 
         }else{
             $this->pdf->Output($filename.'.pdf', 'I');
-        }        
+        }   
+		$this->pdf = NULL;    
          
     }
     
     // uses a template and places the signature
     function use_template_pdf($filename, $template){
 
-
-	// if template doesn't exists makes it	
-	if(!file_exists($template.'.pdf')){
-		$this->make_template_pdf($template);	
-	}
-
-	$this->pdf = new FPDI();
-
-            
-        $this->pdf = new FPDI();
+		// if template doesn't exists makes it	
+		if(!file_exists($template.'.pdf')){
+			$this->make_template_pdf($template);	
+		}
+		
+		$this->pdf = new FPDI();
 
         $pagecount = $this->pdf->setSourceFile($template.'.pdf');
         $tplidx = $this->pdf->importPage(1);
-         
-        $this->pdf->addPage();
-
-        $this->pdf->useTemplate($tplidx, 0, 0);
-        $this->pdf->SetXY(100, 270);
-        
-        $this->pdf->Image($this->image,125,260,-200);
+		
+		$this->pdf->addPage();
 
         $this->pdf->useTemplate($tplidx, 10, 10);
-        $this->pdf->SetXY(100, 270);
         
-        $this->pdf->Image($this->image,135,260,-200);
+        $this->pdf->Image($this->image,125,260,-200);
         
         if(is_writable(dirname(__FILE__))){
             $this->pdf->Output($filename.'.pdf', 'F'); 
         }else{
             $this->pdf->Output($filename.'.pdf', 'I');
-        }       
+        } 
+		$this->pdf = NULL;      
          
     }
 }
